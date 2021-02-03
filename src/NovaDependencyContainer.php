@@ -123,15 +123,16 @@ class NovaDependencyContainer extends Field
      */
     protected function getFieldLayout($field, $value = null)
     {
-        if (count( ($field = explode('.', $field)) ) === 1) {
+        if (count(($field = explode('->', $field))) === 1) {
             // backwards compatibility, property becomes field
             $field[1] = $field[0];
         }
+
         return [
             // literal form input name
-            'field' => $field[0],
+            'field' => $field[1],
             // property to compare
-            'property' => $field[1],
+            'property' => $field[0],
             // value to compare
             'value' => $value,
         ];
